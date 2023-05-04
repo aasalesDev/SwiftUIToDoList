@@ -14,7 +14,7 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HeaderView()
+                HeaderView(title: "TO DO LIST", subTitle: "Get your things done!", rotationAngle: 15, backgroundColor: .blue)
                 
                 Form {
                     TextField("Email Address", text: $email)
@@ -35,11 +35,12 @@ struct LoginView: View {
                         }
                     }
                 }
+                .frame(minHeight: UIScreen.main.bounds.height / 5)
                 
                 VStack {
                     Text("Do not have an account?")
                     
-                    NavigationLink("Create your account...", destination: RegisterView())
+                    NavigationLink("Click here to create one", destination: RegisterView(email: "", password: "", confirmPassword: ""))
                 }
                 .padding()
             }
