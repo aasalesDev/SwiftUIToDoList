@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @State var name: String
     @State var email: String
     @State var password: String
     @State var confirmPassword: String
     
     var body: some View {
         VStack {
-            HeaderView(title: "REGISTRATION", subTitle: "Register Yourself!!", rotationAngle: 345, backgroundColor: .orange)
-                //.offset(y: -50)
+            HeaderView(title: "Registration", subTitle: "Register Yourself!!", rotationAngle: -15, backgroundColor: .orange)
             
             Form {
+                TextField("Full Name", text: $name)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocorrectionDisabled()
+                
                 TextField("Email Address", text: $email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocorrectionDisabled()
+                    .autocapitalization(.none)
                 
                 SecureField("Password", text: $password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -27,19 +33,14 @@ struct RegisterView: View {
                 SecureField("Confirm Password", text: $confirmPassword)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
-                Button {
-                    print("Login Button Pressed...")
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(Color.blue)
-                        Text("LOGIN")
-                            .foregroundColor(.white)
-                            .bold()
-                    }
+                TDLButton(title: "Register", backgroundColor: .orange) {
+                    print("Uhul, I'm an action")
                 }
+                .padding()
+                
             }
-            .frame(minHeight: UIScreen.main.bounds.height / 4)
+            .frame(minHeight: UIScreen.main.bounds.height / 2.5)
+            .offset(y: -50)
         }
     }
 }
@@ -47,6 +48,6 @@ struct RegisterView: View {
 struct RegisterView_Previews: PreviewProvider {
      
     static var previews: some View {
-        RegisterView(email: "", password: "", confirmPassword: "")
+        RegisterView(name: "", email: "", password: "", confirmPassword: "")
     }
 }
