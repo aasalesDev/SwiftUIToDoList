@@ -36,12 +36,11 @@ struct LoginView: View {
                     .padding()
                 }
                 .frame(minHeight: UIScreen.main.bounds.height / 5)
-                .offset(y: -50)
                 
                 VStack {
                     Text("Do not have an account?")
                     
-                    NavigationLink("Click here to create one", destination: RegisterView(name: "", email: "", password: "", confirmPassword: ""))
+                    NavigationLink("Click here to create one", destination: RegisterView())
                 }
                 .padding()
             }
