@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @StateObject var viewModel = ProfileViewViewModel()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -24,6 +26,7 @@ struct ProfileView: View {
                     .background(Color.black)
                     .cornerRadius(10)
             }
+            .navigationTitle("Profile")
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(Color.pink)
             .ignoresSafeArea()
