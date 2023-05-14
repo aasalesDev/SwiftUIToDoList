@@ -7,7 +7,11 @@
 
 import Foundation
 
-///View for all the items in the To Do List Items
+///ViewModel for List of Items View
+///Primary Tab
 class ToDoListViewViewModel: ObservableObject {
+    
+    @Published var showingNewItemView: Bool = false
+    
     init() {}
 }
