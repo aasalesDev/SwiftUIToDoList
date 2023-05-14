@@ -7,3 +7,7 @@
 
 import Foundation
 
+///View for each item in the To Do List Items
+class ToDoListItemsViewViewModel: ObservableObject {
+    init() {}
+}

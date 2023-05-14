@@ -31,7 +31,7 @@ struct HeaderView: View {
             .offset(y: -100)
             .foregroundColor(.white)
         }
-        .frame(width: UIScreen.main.bounds.width * 3, height: 300)
+        .frame(minWidth: UIScreen.main.bounds.width * 3, minHeight: 300)
         Spacer()
     }
 }
