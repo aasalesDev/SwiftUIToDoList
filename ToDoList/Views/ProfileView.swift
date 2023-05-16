@@ -13,22 +13,47 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Image(systemName: "person.fill")
+                Image(systemName: "person.circle")
                     .resizable()
-                    .frame(width: 150, height: 150, alignment: .center)
-                    .background(Color.black)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 125, height: 125)
+                    .background(Color.blue)
                     .clipShape(Circle())
                     .foregroundColor(.white)
+                    .padding()
+                
+                VStack (alignment: .leading) {
+                    HStack {
+                        Text("Name: ")
+                        Text("Anderson Sales")
+                    }
+                    .padding()
                     
-                NavigationLink("LOGOUT", destination: MainView())
-                    .foregroundColor(.white)
-                    .frame(width: UIScreen.main.bounds.width * 0.5, height: 52)
-                    .background(Color.black)
-                    .cornerRadius(10)
+                    HStack {
+                        Text("Email: ")
+                        Text("aasalesdev@gmail.com")
+                    }
+                    .padding()
+                    
+                    HStack {
+                        Text("Member since: ")
+                        Text("Anderson Sales")
+                    }
+                    .padding()
+                }
+                    
+                Button {
+                    viewModel.logOut()
+                } label: {
+                    Text("Log Out")
+                }
+                .tint(Color.red)
+                .padding()
+
             }
             .navigationTitle("Profile")
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            .background(Color.pink)
+            .background(Color.mint)
             .ignoresSafeArea()
         }
     }

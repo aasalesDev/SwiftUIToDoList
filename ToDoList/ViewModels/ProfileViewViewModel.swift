@@ -6,7 +6,12 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class ProfileViewViewModel: ObservableObject {
     init() {}
+    
+    func logOut() {
+        
+    }
 }
