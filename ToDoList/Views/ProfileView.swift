@@ -13,49 +13,60 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 125, height: 125)
-                    .background(Color.blue)
-                    .clipShape(Circle())
-                    .foregroundColor(.white)
-                    .padding()
-                
-                VStack (alignment: .leading) {
-                    HStack {
-                        Text("Name: ")
-                        Text("Anderson Sales")
-                    }
-                    .padding()
-                    
-                    HStack {
-                        Text("Email: ")
-                        Text("aasalesdev@gmail.com")
-                    }
-                    .padding()
-                    
-                    HStack {
-                        Text("Member since: ")
-                        Text("Anderson Sales")
-                    }
-                    .padding()
+                if let user = viewModel.user {
+                    profile(user: user)
+                } else {
+                    Text("Loading Profile...")
                 }
-                    
-                Button {
-                    viewModel.logOut()
-                } label: {
-                    Text("Log Out")
-                }
-                .tint(Color.red)
-                .padding()
 
             }
             .navigationTitle("Profile")
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            .background(Color.mint)
             .ignoresSafeArea()
         }
+        .onAppear {
+            viewModel.fetchUser()
+        }
+    }
+    
+    @ViewBuilder
+    func profile(user: User) -> some View {
+            Image(systemName: "person.circle")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 125, height: 125)
+                .background(Color.blue)
+                .clipShape(Circle())
+                .foregroundColor(.white)
+                .padding()
+            
+            VStack (alignment: .leading) {
+                HStack {
+                    Text("Name: ")
+                    Text(user.name)
+                }
+                .padding()
+                
+                HStack {
+                    Text("Email: ")
+                    Text(user.email)
+                }
+                .padding()
+                
+                HStack {
+                    Text("Member since: ")
+                    Text("\(Date(timeIntervalSince1970: user.joined).formatted(date: .abbreviated, time: .shortened))")
+                }
+                .padding()
+            }
+                
+            Button {
+                viewModel.logOut()
+            } label: {
+                Text("Log Out")
+            }
+            .tint(Color.red)
+            .padding()
     }
 }
 
